@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="640" viewBox="0 0 360 640">
+  <rect width="360" height="640" rx="28" fill="#fffbf5"/>
+  <g font-family="Arial,sans-serif" fill="#594331">
+    <text x="24" y="32" font-size="12">9:41</text><text x="300" y="32" font-size="12">LTE</text>
+    <text x="24" y="89" font-size="28" font-weight="bold">Almost at your door.</text><text x="24" y="120" font-size="14">Estimated arrival · 12:45 PM</text>
+    <rect x="24" y="152" width="312" height="239" rx="18" fill="#e8eddc"/>
+    <path d="M24 210H336M24 290H336M104 152V391M252 152V391" stroke="#fffbf5" stroke-width="19"/>
+    <path d="M70 330H176V250H281V210" fill="none" stroke="#715337" stroke-width="5" stroke-dasharray="9 7"/>
+    <circle cx="70" cy="330" r="12" fill="#715337"/><circle cx="281" cy="210" r="12" fill="#508663"/>
+    <text x="24" y="435" font-size="18" font-weight="bold">Your order is on its way</text>
+    <circle cx="37" cy="472" r="8" fill="#508663"/><text x="59" y="478" font-size="14">Order confirmed</text>
+    <circle cx="37" cy="515" r="8" fill="#508663"/><text x="59" y="521" font-size="14">Freshly prepared</text>
+    <circle cx="37" cy="558" r="8" fill="#b5894d"/><text x="59" y="564" font-size="14">Courier nearby</text>
+    <text x="24" y="607" font-size="12">Illustrative route · Not a live map</text>
+  </g>
+</svg>

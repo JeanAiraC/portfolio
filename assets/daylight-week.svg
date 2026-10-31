@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="640" viewBox="0 0 360 640">
+  <rect width="360" height="640" rx="28" fill="#fbf9ff"/>
+  <g font-family="Arial,sans-serif" fill="#483d61">
+    <text x="24" y="32" font-size="12">9:41</text><text x="300" y="32" font-size="12">LTE</text>
+    <text x="24" y="89" font-size="24" font-weight="bold">Look how far you've come.</text><text x="24" y="120" font-size="14">Your week in a moment</text>
+    <rect x="24" y="154" width="312" height="106" rx="17" fill="#ece6f6"/><text x="44" y="194" font-size="35" font-weight="bold">18 tasks</text><text x="44" y="230" font-size="14">completed with intention</text>
+    <path d="M40 425H320" stroke="#d7cce8"/>
+    <g fill="#9e87c0"><rect x="44" y="341" width="24" height="84" rx="5"/><rect x="82" y="299" width="24" height="126" rx="5"/><rect x="120" y="355" width="24" height="70" rx="5"/><rect x="158" y="313" width="24" height="112" rx="5"/><rect x="196" y="327" width="24" height="98" rx="5"/><rect x="234" y="369" width="24" height="56" rx="5"/><rect x="272" y="383" width="24" height="42" rx="5"/></g>
+    <text x="46" y="450" font-size="11">M</text><text x="87" y="450" font-size="11">T</text><text x="125" y="450" font-size="11">W</text><text x="165" y="450" font-size="11">T</text><text x="202" y="450" font-size="11">F</text><text x="241" y="450" font-size="11">S</text><text x="279" y="450" font-size="11">S</text>
+    <rect x="24" y="492" width="312" height="97" rx="16" fill="#f3eddf"/><text x="44" y="528" font-size="17" font-weight="bold">Progress, not perfection.</text><text x="44" y="560" font-size="13">Small steps add up.</text>
+  </g>
+</svg>

@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="640" viewBox="0 0 360 640">
+  <rect width="360" height="640" rx="28" fill="#f8fbf6"/>
+  <g font-family="Arial,sans-serif" fill="#254236">
+    <text x="24" y="32" font-size="12">9:41</text><text x="300" y="32" font-size="12">LTE</text>
+    <text x="24" y="85" font-size="15">Good morning, Jean Aira</text><text x="24" y="118" font-size="27" font-weight="bold">Your money, made clear.</text>
+    <rect x="24" y="145" width="312" height="175" rx="18" fill="#246150"/>
+    <text x="44" y="178" font-size="13" fill="#d2e5d9">Total balance</text><text x="44" y="224" font-size="38" fill="#fff">£12,840.00</text>
+    <text x="44" y="251" font-size="12" fill="#d2e5d9">+8.2% this month</text>
+    <path d="M44 290 85 281 126 286 166 263 208 272 249 250 310 237" fill="none" stroke="#b9d78c" stroke-width="4"/>
+    <text x="24" y="356" font-size="18" font-weight="bold">Your pockets</text>
+    <rect x="24" y="375" width="148" height="102" rx="14" fill="#e5eddb"/><rect x="188" y="375" width="148" height="102" rx="14" fill="#eee9db"/>
+    <text x="40" y="407" font-size="14">Travel fund</text><text x="40" y="444" font-size="23">£2,450</text>
+    <text x="204" y="407" font-size="14">New home</text><text x="204" y="444" font-size="23">£8,200</text>
+    <text x="24" y="514" font-size="18" font-weight="bold">Recent activity</text><text x="24" y="550" font-size="14">Monthly salary</text><text x="250" y="550" font-size="14">+£3,500</text>
+    <path d="M24 576H336" stroke="#dce5d7"/><text x="30" y="605" font-size="12">Home</text><text x="110" y="605" font-size="12">Insights</text><text x="203" y="605" font-size="12">Transfer</text><text x="291" y="605" font-size="12">Profile</text>
+  </g>
+</svg>

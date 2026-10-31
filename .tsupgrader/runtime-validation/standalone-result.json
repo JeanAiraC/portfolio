@@ -1,0 +1,98 @@
+{
+  "planHash": "19c52ef150e8013a3a25f9c0ac350c182b65f0120da4d357537be013c0da2fdf",
+  "phase": "standalone",
+  "recordedAtUtc": "2026-10-31T13:41:47.9634529Z",
+  "retryCount": 2,
+  "resetBaseline": false,
+  "complete": true,
+  "result": {
+    "setupSucceeded": true,
+    "setupDurationMs": 0,
+    "setupFailureOutput": null,
+    "assertions": [
+      {
+        "name": "javascript-syntax",
+        "kind": "process",
+        "verificationMethod": "exit-code",
+        "passed": true,
+        "timedOut": false,
+        "skipped": false,
+        "skippedReason": null,
+        "exitCode": 0,
+        "outputSample": "",
+        "durationMs": 82
+      },
+      {
+        "name": "tests-pass",
+        "kind": "process",
+        "verificationMethod": "test-results",
+        "passed": true,
+        "timedOut": false,
+        "skipped": false,
+        "skippedReason": null,
+        "exitCode": 0,
+        "outputSample": "\u2714 senior profile is consistent across SEO, page and downloadable PDF (3.1335ms)\r\n\u2714 all three projects have three local screenshots with meaningful alternatives (3.0626ms)\r\n\u2714 filters hide unmatched projects and restore all projects (1.4236ms)\r\n\u2714 gallery navigation clamps endpoints and respects reduced motion (0.6938ms)\r\n\u2714 reading progress reports start, midpoint, end and non-scrollable pages (0.805ms)\r\n\u2139 tests 5\r\n\u2139 suites 0\r\n\u2139 pass 5\r\n\u2139 fail 0\r\n\u2139 cancelled 0\r\n\u2139 skipped 0\r\n\u2139 todo 0\r\n\u2139 duration_ms 120.0795\r\n",
+        "durationMs": 213,
+        "testResults": {
+          "testFramework": "unknown",
+          "runnerDetectedFrom": "none",
+          "testsTotal": 0,
+          "testsPassed": 0,
+          "testsFailed": 0,
+          "testsSkipped": 0,
+          "parseFailed": true
+        }
+      }
+    ],
+    "executions": [
+      {
+        "source": "javascript-syntax",
+        "resolvedExecutable": "C:\\Program Files\\nodejs\\node.EXE",
+        "args": [
+          "--check",
+          "script.js"
+        ],
+        "cwd": "d:\\GIt Repositories\\portfolio",
+        "env": {},
+        "prependPath": [],
+        "platform": "win32",
+        "nodeExecutable": null,
+        "nodeVersion": null,
+        "packageManager": null,
+        "packageManagerExecutable": null,
+        "packageManagerVersion": null,
+        "cleanup": {
+          "RootProcessId": 27576,
+          "Completed": true,
+          "ProcessesObserved": 2,
+          "ProcessesTerminated": 1,
+          "Failure": null
+        }
+      },
+      {
+        "source": "tests-pass",
+        "resolvedExecutable": "C:\\Program Files\\nodejs\\node.EXE",
+        "args": [
+          "--test",
+          ".tsupgrader\\runtime-validation\\portfolio.test.cjs"
+        ],
+        "cwd": "d:\\GIt Repositories\\portfolio",
+        "env": {},
+        "prependPath": [],
+        "platform": "win32",
+        "nodeExecutable": null,
+        "nodeVersion": null,
+        "packageManager": null,
+        "packageManagerExecutable": null,
+        "packageManagerVersion": null,
+        "cleanup": {
+          "RootProcessId": 26616,
+          "Completed": true,
+          "ProcessesObserved": 3,
+          "ProcessesTerminated": 0,
+          "Failure": null
+        }
+      }
+    ]
+  }
+}

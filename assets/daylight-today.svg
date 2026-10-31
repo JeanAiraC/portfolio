@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="640" viewBox="0 0 360 640">
+  <rect width="360" height="640" rx="28" fill="#fbf9ff"/>
+  <g font-family="Arial,sans-serif" fill="#483d61">
+    <text x="24" y="32" font-size="12">9:41</text><text x="300" y="32" font-size="12">LTE</text>
+    <text x="24" y="79" font-size="14">Monday, June 16</text><text x="24" y="119" font-size="22" font-weight="bold">Make room for what matters.</text>
+    <rect x="24" y="152" width="312" height="104" rx="17" fill="#ece6f6"/><text x="44" y="186" font-size="13">Today's focus</text><text x="44" y="218" font-size="22">3 of 5 tasks done</text>
+    <rect x="44" y="233" width="270" height="6" rx="3" fill="#d7cce8"/><rect x="44" y="233" width="162" height="6" rx="3" fill="#8e73b7"/>
+    <text x="24" y="299" font-size="19" font-weight="bold">Your day</text>
+    <rect x="24" y="323" width="312" height="70" rx="12" fill="#f0ecf6"/><text x="44" y="352" font-size="15">✓ Morning meditation</text><text x="61" y="375" font-size="11">Personal · 8:00 AM</text>
+    <rect x="24" y="408" width="312" height="70" rx="12" fill="#f0ecf6"/><text x="44" y="437" font-size="15">✓ Review app designs</text><text x="61" y="460" font-size="11">Work · 10:00 AM</text>
+    <rect x="24" y="493" width="312" height="70" rx="12" fill="#f0ecf6"/><text x="44" y="522" font-size="15">Build something great</text><text x="44" y="545" font-size="11">Work · 2:00 PM</text>
+    <text x="24" y="608" font-size="14">+ Add a new task</text>
+  </g>
+</svg>

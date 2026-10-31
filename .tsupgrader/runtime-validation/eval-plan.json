@@ -1,0 +1,25 @@
+{
+  "projectType": "other",
+  "generatedOnPlatform": "win32",
+  "setup": [],
+  "assertions": [
+    {
+      "name": "javascript-syntax",
+      "kind": "process",
+      "command": "node",
+      "args": ["--check", "script.js"],
+      "verificationMethod": "exit-code",
+      "expected": "0",
+      "timeoutSeconds": 30
+    },
+    {
+      "name": "tests-pass",
+      "kind": "process",
+      "command": "node",
+      "args": ["--test", ".tsupgrader\\runtime-validation\\portfolio.test.cjs", ".tsupgrader\\runtime-validation\\build.test.cjs"],
+      "verificationMethod": "test-results",
+      "expected": "0",
+      "timeoutSeconds": 30
+    }
+  ]
+}

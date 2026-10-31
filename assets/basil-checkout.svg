@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="640" viewBox="0 0 360 640">
+  <rect width="360" height="640" rx="28" fill="#fffbf5"/>
+  <g font-family="Arial,sans-serif" fill="#594331">
+    <text x="24" y="32" font-size="12">9:41</text><text x="300" y="32" font-size="12">LTE</text>
+    <text x="24" y="89" font-size="28" font-weight="bold">Good things on the way.</text><text x="24" y="120" font-size="14">Your basket</text>
+    <rect x="24" y="155" width="312" height="98" rx="16" fill="#f2eddf"/><text x="44" y="191" font-size="18" font-weight="bold">The green bowl</text><text x="44" y="224" font-size="14">1 serving</text><text x="251" y="224" font-size="17">£12.50</text>
+    <text x="24" y="300" font-size="17" font-weight="bold">Delivery address</text><text x="24" y="329" font-size="14">Home · 24 Garden Lane</text>
+    <path d="M24 358H336" stroke="#e2d7c4"/>
+    <text x="24" y="393" font-size="15">Subtotal</text><text x="274" y="393" font-size="15">£12.50</text>
+    <text x="24" y="427" font-size="15">Delivery</text><text x="282" y="427" font-size="15">£2.00</text>
+    <path d="M24 454H336" stroke="#e2d7c4"/><text x="24" y="491" font-size="22" font-weight="bold">Total</text><text x="261" y="491" font-size="22">£14.50</text>
+    <rect x="24" y="537" width="312" height="54" rx="12" fill="#715337"/><text x="125" y="570" font-size="16" fill="#fff">Place order</text>
+  </g>
+</svg>
