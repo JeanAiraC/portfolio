@@ -85,7 +85,30 @@ class ThemeManager {
       const hours = String(now.getHours()).padStart(2, '0');
       const minutes = String(now.getMinutes()).padStart(2, '0');
       timeElement.textContent = `${hours}:${minutes}`;
+      console.log('Updated phone time to:', `${hours}:${minutes}`);
     }
+    
+    // Update phone colors to match theme
+    this.updatePhoneColors();
+  }
+
+  updatePhoneColors() {
+    const theme = this.getCurrentTheme();
+    const timeElement = document.getElementById('phone-time');
+    
+    if (!timeElement) return;
+    
+    // Get computed style to match current theme colors
+    const root = document.documentElement;
+    const computedStyle = getComputedStyle(root);
+    
+    // Get primary color from CSS variables
+    const primaryColor = computedStyle.getPropertyValue('--primary').trim();
+    
+    // Update time text color to white (always visible on colored background)
+    timeElement.setAttribute('fill', '#ffffff');
+    
+    console.log('Phone colors updated - Theme:', theme, '- Primary:', primaryColor);
   }
 }
 
@@ -120,16 +143,20 @@ class TimeUpdater {
 // ============================================
 console.log('Script.js loaded');
 
+// Store globally so they persist and don't get garbage collected
+window.themeManager = null;
+window.timeUpdater = null;
+
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', function() {
     console.log('DOM ready, initializing theme and time...');
-    const themeManager = new ThemeManager();
-    const timeUpdater = new TimeUpdater();
+    window.themeManager = new ThemeManager();
+    window.timeUpdater = new TimeUpdater();
   });
 } else {
   console.log('DOM already loaded, initializing immediately...');
-  const themeManager = new ThemeManager();
-  const timeUpdater = new TimeUpdater();
+  window.themeManager = new ThemeManager();
+  window.timeUpdater = new TimeUpdater();
 }
 
 
