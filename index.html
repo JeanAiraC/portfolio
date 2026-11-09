@@ -19,19 +19,28 @@
   
   <!-- Inline script for immediate theme detection to prevent flash -->
   <script>
+    // Run immediately before DOM renders
     (function() {
       try {
+        // Check if user has a saved preference
         const savedTheme = localStorage.getItem('portfolio-theme');
-        let theme = savedTheme;
         
-        if (!theme) {
+        let theme = 'light'; // default
+        
+        if (savedTheme) {
+          theme = savedTheme;
+        } else {
+          // Auto-detect based on current time
           const hour = new Date().getHours();
+          // Day: 6 AM to 6 PM (6-17), Night: 6 PM to 6 AM (18-5)
           theme = (hour >= 6 && hour < 18) ? 'light' : 'dark';
         }
         
+        // Apply theme immediately
         document.documentElement.setAttribute('data-theme', theme);
+        console.log('Theme set to:', theme);
       } catch (e) {
-        // Fallback to light theme
+        console.error('Theme error:', e);
         document.documentElement.setAttribute('data-theme', 'light');
       }
     })();
@@ -59,8 +68,8 @@
         <div class="hero-layout">
           <div class="hero-text">
             <div class="tag">Mobile Developer</div>
-            <h2>Nearly 10 years of mobile excellence</h2>
-            <p>Mobile Application developer with nearly 10 years of experience building and maintaining mobile applications. Skilled in Java and Kotlin, Swift and Objective-C, JavaScript with React Native, API and payment integrations, and collaborating with design, QA, and Agile teams to deliver reliable features.</p>
+            <h2>9 years of mobile excellence</h2>
+            <p>Mobile Application developer with 9 years of experience building and maintaining mobile applications. Skilled in Java and Kotlin, Swift and Objective-C, JavaScript with React Native, API and payment integrations, and collaborating with design, QA, and Agile teams to deliver reliable features.</p>
             <div class="cta-buttons">
               <a href="#contact" class="btn btn-primary">Get in touch</a>
               <a href="resume.pdf" class="btn btn-secondary">Download Resume</a>

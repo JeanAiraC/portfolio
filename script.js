@@ -6,118 +6,92 @@ const profile = {
   title: 'Senior Android Developer',
 };
 
-// Theme Management System
+// ============================================
+// THEME MANAGER - Simple & Reliable
+// ============================================
 class ThemeManager {
   constructor() {
     this.STORAGE_KEY = 'portfolio-theme';
-    this.LIGHT_THEME = 'light';
-    this.DARK_THEME = 'dark';
     this.init();
   }
 
   init() {
-    // Check for saved preference first
-    const savedTheme = localStorage.getItem(this.STORAGE_KEY);
+    console.log('ThemeManager initializing...');
     
-    if (savedTheme) {
-      // Use saved preference
-      this.setTheme(savedTheme, false);
-    } else {
-      // Auto-detect based on time
-      const theme = this.detectThemeByTime();
-      this.setTheme(theme, false);
-    }
-
-    this.setupToggle();
+    // Setup toggle button
+    this.setupToggleButton();
+    
+    // Update button state to match current theme
+    this.updateButtonState();
   }
 
-  detectThemeByTime() {
-    const hour = new Date().getHours();
-    // Day mode: 6 AM to 6 PM (6-17), Night mode: 6 PM to 6 AM (18-5)
-    return (hour >= 6 && hour < 18) ? this.LIGHT_THEME : this.DARK_THEME;
+  getCurrentTheme() {
+    return document.documentElement.getAttribute('data-theme') || 'light';
   }
 
-  setTheme(theme, save = true) {
-    const htmlElement = document.documentElement;
+  setTheme(theme) {
+    console.log('Setting theme to:', theme);
     
-    // Add fade-out effect
-    document.body.style.transition = 'opacity 0.3s ease';
+    // Set the data-theme attribute
+    document.documentElement.setAttribute('data-theme', theme);
     
-    // Set theme after a tiny delay for smoother transition
-    setTimeout(() => {
-      htmlElement.setAttribute('data-theme', theme);
-      
-      // Update toggle button if it exists
-      const toggleBtn = document.getElementById('theme-toggle');
-      if (toggleBtn) {
-        toggleBtn.setAttribute('aria-checked', theme === this.DARK_THEME);
-        toggleBtn.title = theme === this.DARK_THEME ? 'Switch to Light Mode' : 'Switch to Dark Mode';
-        toggleBtn.textContent = theme === this.DARK_THEME ? '☀️' : '🌙';
-      }
-      
-      // Update phone mockup colors
-      this.updatePhoneMockupColors(theme);
-      
-      if (save) {
-        localStorage.setItem(this.STORAGE_KEY, theme);
-      }
-    }, 10);
-  }
-
-  updatePhoneMockupColors(theme) {
-    const svgElements = document.querySelectorAll('.android-phone rect, .android-phone text, .android-phone circle');
+    // Save preference
+    localStorage.setItem(this.STORAGE_KEY, theme);
     
-    if (theme === this.LIGHT_THEME) {
-      // Light mode colors
-      const phoneFrame = document.querySelector('.android-phone rect:nth-of-type(1)');
-      const screen = document.querySelector('.android-phone rect:nth-of-type(2)');
-      
-      if (phoneFrame) phoneFrame.setAttribute('fill', '#1a1a1a');
-      if (screen) screen.setAttribute('fill', '#ffffff');
-      
-      // Update text colors for light mode
-      document.querySelectorAll('.android-phone text').forEach(text => {
-        if (text.textContent === 'Tasks') return; // Header stays white
-        if (text.getAttribute('fill') === '#ffffff') return; // Keep white text
-        text.setAttribute('fill', '#1a1a1a'); // Dark text
-      });
-    } else {
-      // Dark mode colors
-      const phoneFrame = document.querySelector('.android-phone rect:nth-of-type(1)');
-      const screen = document.querySelector('.android-phone rect:nth-of-type(2)');
-      
-      if (phoneFrame) phoneFrame.setAttribute('fill', '#0f172a');
-      if (screen) screen.setAttribute('fill', '#1e293b');
-      
-      // Update text colors for dark mode
-      document.querySelectorAll('.android-phone text').forEach(text => {
-        if (text.textContent === 'Tasks') return; // Header stays white
-        if (text.getAttribute('fill') === '#ffffff') return; // Keep white text
-        text.setAttribute('fill', '#cbd5e1'); // Light gray text
-      });
-      
-      // Update strokes for dark mode
-      document.querySelectorAll('.android-phone rect[stroke="#e5e7eb"]').forEach(rect => {
-        rect.setAttribute('stroke', '#334155');
-      });
-    }
+    // Update button appearance
+    this.updateButtonState();
+    
+    // Update phone mockup
+    this.updatePhoneDisplay();
   }
 
   toggleTheme() {
-    const current = document.documentElement.getAttribute('data-theme') || 'light';
-    const newTheme = current === this.LIGHT_THEME ? this.DARK_THEME : this.LIGHT_THEME;
-    this.setTheme(newTheme, true);
+    const current = this.getCurrentTheme();
+    const newTheme = current === 'light' ? 'dark' : 'light';
+    console.log('Toggling theme from', current, 'to', newTheme);
+    this.setTheme(newTheme);
   }
 
-  setupToggle() {
-    const toggleBtn = document.getElementById('theme-toggle');
-    if (toggleBtn) {
-      toggleBtn.addEventListener('click', () => this.toggleTheme());
+  updateButtonState() {
+    const btn = document.getElementById('theme-toggle');
+    if (!btn) return;
+    
+    const theme = this.getCurrentTheme();
+    
+    if (theme === 'dark') {
+      btn.textContent = '☀️'; // Sun icon for light mode
+      btn.title = 'Switch to Light Mode';
+    } else {
+      btn.textContent = '🌙'; // Moon icon for dark mode
+      btn.title = 'Switch to Dark Mode';
+    }
+  }
+
+  setupToggleButton() {
+    const btn = document.getElementById('theme-toggle');
+    if (btn) {
+      btn.addEventListener('click', () => this.toggleTheme());
+      console.log('Toggle button setup complete');
+    } else {
+      console.warn('Theme toggle button not found');
+    }
+  }
+
+  updatePhoneDisplay() {
+    // Update phone time
+    const timeElement = document.getElementById('phone-time');
+    if (timeElement) {
+      const now = new Date();
+      const hours = String(now.getHours()).padStart(2, '0');
+      const minutes = String(now.getMinutes()).padStart(2, '0');
+      timeElement.textContent = `${hours}:${minutes}`;
     }
   }
 }
 
-// Current Time Display in Phone Mockup
+// ============================================
+// TIME UPDATER - Updates phone time every minute
+// ============================================
 class TimeUpdater {
   constructor() {
     this.init();
@@ -125,7 +99,7 @@ class TimeUpdater {
 
   init() {
     this.updateTime();
-    // Update time every minute
+    // Update every minute
     setInterval(() => this.updateTime(), 60000);
   }
 
@@ -135,24 +109,29 @@ class TimeUpdater {
       const now = new Date();
       const hours = String(now.getHours()).padStart(2, '0');
       const minutes = String(now.getMinutes()).padStart(2, '0');
-      const timeString = `${hours}:${minutes}`;
-      
-      timeElement.textContent = timeString;
+      timeElement.textContent = `${hours}:${minutes}`;
+      console.log('Phone time updated to:', `${hours}:${minutes}`);
     }
   }
 }
 
-// Initialize when DOM is ready
-function initializePortfolio() {
-  new ThemeManager();
-  new TimeUpdater();
-}
+// ============================================
+// INITIALIZE ON LOAD
+// ============================================
+console.log('Script.js loaded');
 
 if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', initializePortfolio);
+  document.addEventListener('DOMContentLoaded', function() {
+    console.log('DOM ready, initializing theme and time...');
+    const themeManager = new ThemeManager();
+    const timeUpdater = new TimeUpdater();
+  });
 } else {
-  initializePortfolio();
+  console.log('DOM already loaded, initializing immediately...');
+  const themeManager = new ThemeManager();
+  const timeUpdater = new TimeUpdater();
 }
+
 
 
   },
