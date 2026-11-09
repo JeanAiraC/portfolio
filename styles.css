@@ -166,6 +166,13 @@ html[data-theme] {
   align-items: center;
 }
 
+.hero-layout-single {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
 .tag {
   display: inline-block;
   background: var(--primary-light);
@@ -255,9 +262,44 @@ html[data-theme="dark"] .android-phone {
   filter: drop-shadow(0 20px 60px rgba(96, 165, 250, 0.25));
 }
 
+.android-phone-profile {
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+  filter: drop-shadow(0 20px 60px rgba(0, 102, 204, 0.15));
+  transition: filter 0.3s ease;
+}
+
+html[data-theme="dark"] .android-phone-profile {
+  filter: drop-shadow(0 20px 60px rgba(96, 165, 250, 0.25));
+}
+
+/* Profile Image Container - HIDDEN */
+.profile-image-container {
+  display: none;
+}
+
+.profile-placeholder {
+  display: none;
+}
+
+.placeholder-text {
+  display: none;
+}
+
 .about-hero {
   padding: 80px 0;
   background: var(--bg-gradient);
+}
+}
+
+/* About highlights - HIDDEN */
+.about-highlights {
+  display: none;
+}
+
+.highlight {
+  display: none;
 }
 
 /* Experience Section */
@@ -489,21 +531,6 @@ html[data-theme="dark"] .skill-group:hover {
   font-weight: bold;
 }
 
-.skill-group li.highlighted {
-  background: var(--primary-light);
-  color: var(--primary);
-  font-weight: 600;
-  padding: 8px 10px;
-  padding-left: 15px;
-  border-radius: 6px;
-  margin-bottom: 4px;
-}
-
-html[data-theme="dark"] .skill-group li.highlighted {
-  background: rgba(96, 165, 250, 0.15);
-  color: #93c5fd;
-}
-
 /* Contact Section */
 .contact {
   padding: 80px 0;
@@ -623,6 +650,11 @@ html[data-theme="dark"] .footer {
 
   .about-grid {
     grid-template-columns: 1fr;
+  }
+
+  .about-highlights {
+    flex-direction: column;
+    gap: 20px;
   }
 
   .skills-grid {
