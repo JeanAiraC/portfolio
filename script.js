@@ -21,12 +21,11 @@ class ThemeManager {
     
     if (savedTheme) {
       // Use saved preference
-      this.setTheme(savedTheme);
+      this.setTheme(savedTheme, false);
     } else {
       // Auto-detect based on time
       const theme = this.detectThemeByTime();
-      this.setTheme(theme);
-      localStorage.setItem(this.STORAGE_KEY, theme);
+      this.setTheme(theme, false);
     }
 
     this.setupToggle();
@@ -38,26 +37,76 @@ class ThemeManager {
     return (hour >= 6 && hour < 18) ? this.LIGHT_THEME : this.DARK_THEME;
   }
 
-  setTheme(theme) {
+  setTheme(theme, save = true) {
     const htmlElement = document.documentElement;
-    htmlElement.setAttribute('data-theme', theme);
     
-    // Update toggle button if it exists
-    const toggleBtn = document.getElementById('theme-toggle');
-    if (toggleBtn) {
-      toggleBtn.setAttribute('aria-checked', theme === this.DARK_THEME);
-      toggleBtn.title = theme === this.DARK_THEME ? 'Switch to Light Mode' : 'Switch to Dark Mode';
-      toggleBtn.textContent = theme === this.DARK_THEME ? '☀️' : '🌙';
-    }
+    // Add fade-out effect
+    document.body.style.transition = 'opacity 0.3s ease';
+    
+    // Set theme after a tiny delay for smoother transition
+    setTimeout(() => {
+      htmlElement.setAttribute('data-theme', theme);
+      
+      // Update toggle button if it exists
+      const toggleBtn = document.getElementById('theme-toggle');
+      if (toggleBtn) {
+        toggleBtn.setAttribute('aria-checked', theme === this.DARK_THEME);
+        toggleBtn.title = theme === this.DARK_THEME ? 'Switch to Light Mode' : 'Switch to Dark Mode';
+        toggleBtn.textContent = theme === this.DARK_THEME ? '☀️' : '🌙';
+      }
+      
+      // Update phone mockup colors
+      this.updatePhoneMockupColors(theme);
+      
+      if (save) {
+        localStorage.setItem(this.STORAGE_KEY, theme);
+      }
+    }, 10);
+  }
 
-    // Store preference
-    localStorage.setItem(this.STORAGE_KEY, theme);
+  updatePhoneMockupColors(theme) {
+    const svgElements = document.querySelectorAll('.android-phone rect, .android-phone text, .android-phone circle');
+    
+    if (theme === this.LIGHT_THEME) {
+      // Light mode colors
+      const phoneFrame = document.querySelector('.android-phone rect:nth-of-type(1)');
+      const screen = document.querySelector('.android-phone rect:nth-of-type(2)');
+      
+      if (phoneFrame) phoneFrame.setAttribute('fill', '#1a1a1a');
+      if (screen) screen.setAttribute('fill', '#ffffff');
+      
+      // Update text colors for light mode
+      document.querySelectorAll('.android-phone text').forEach(text => {
+        if (text.textContent === 'Tasks') return; // Header stays white
+        if (text.getAttribute('fill') === '#ffffff') return; // Keep white text
+        text.setAttribute('fill', '#1a1a1a'); // Dark text
+      });
+    } else {
+      // Dark mode colors
+      const phoneFrame = document.querySelector('.android-phone rect:nth-of-type(1)');
+      const screen = document.querySelector('.android-phone rect:nth-of-type(2)');
+      
+      if (phoneFrame) phoneFrame.setAttribute('fill', '#0f172a');
+      if (screen) screen.setAttribute('fill', '#1e293b');
+      
+      // Update text colors for dark mode
+      document.querySelectorAll('.android-phone text').forEach(text => {
+        if (text.textContent === 'Tasks') return; // Header stays white
+        if (text.getAttribute('fill') === '#ffffff') return; // Keep white text
+        text.setAttribute('fill', '#cbd5e1'); // Light gray text
+      });
+      
+      // Update strokes for dark mode
+      document.querySelectorAll('.android-phone rect[stroke="#e5e7eb"]').forEach(rect => {
+        rect.setAttribute('stroke', '#334155');
+      });
+    }
   }
 
   toggleTheme() {
-    const current = document.documentElement.getAttribute('data-theme');
+    const current = document.documentElement.getAttribute('data-theme') || 'light';
     const newTheme = current === this.LIGHT_THEME ? this.DARK_THEME : this.LIGHT_THEME;
-    this.setTheme(newTheme);
+    this.setTheme(newTheme, true);
   }
 
   setupToggle() {
@@ -68,14 +117,43 @@ class ThemeManager {
   }
 }
 
-// Initialize theme when DOM is ready
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', () => {
-    new ThemeManager();
-  });
-} else {
-  new ThemeManager();
+// Current Time Display in Phone Mockup
+class TimeUpdater {
+  constructor() {
+    this.init();
+  }
+
+  init() {
+    this.updateTime();
+    // Update time every minute
+    setInterval(() => this.updateTime(), 60000);
+  }
+
+  updateTime() {
+    const timeElement = document.getElementById('phone-time');
+    if (timeElement) {
+      const now = new Date();
+      const hours = String(now.getHours()).padStart(2, '0');
+      const minutes = String(now.getMinutes()).padStart(2, '0');
+      const timeString = `${hours}:${minutes}`;
+      
+      timeElement.textContent = timeString;
+    }
+  }
 }
+
+// Initialize when DOM is ready
+function initializePortfolio() {
+  new ThemeManager();
+  new TimeUpdater();
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initializePortfolio);
+} else {
+  initializePortfolio();
+}
+
 
   },
 };
