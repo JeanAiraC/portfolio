@@ -1,4 +1,4 @@
-// Personalize the sample identity here and in index.html before publishing.
+// User profile information
 const profile = {
   name: 'Jean Aira Canillo',
   email: 'canillojeanairaworkmail@gmail.com',
@@ -6,48 +6,77 @@ const profile = {
   title: 'Senior Android Developer',
 };
 
-const projects = {
-  pocket: {
-    title: 'Pocket',
-    category: '01 / FINTECH - CONCEPT PROJECT',
-    description: 'An offline-first personal finance app that makes budgeting feel approachable, with a clear balance overview, savings pockets, and expense insights.',
-    tags: ['Kotlin', 'Jetpack Compose', 'Room', 'Coroutines', 'Clean Architecture'],
-    role: 'Lead Android developer concept: responsible for the app architecture, accessible Compose components, local persistence, and the transaction synchronization design.',
-    features: ['Expense categorization and monthly spending insights', 'Savings goals with visual progress tracking', 'Offline access to balances and transaction history', 'Adaptive UI with accessible contrast and touch targets'],
-    challenge: 'Keeping financial records consistent when connectivity drops. The proposed solution uses Room as the single source of truth, a persistent sync queue, and idempotent transaction identifiers to prevent duplicate records after retries.',
-    screenshots: [
-      { src: 'assets/pocket-overview.svg', caption: 'Balance overview', alt: 'Pocket concept screen showing a balance, savings pockets, and recent activity.' },
-      { src: 'assets/pocket-insights.svg', caption: 'Spending insights', alt: 'Pocket concept screen with a spending chart and categorized expenses.' },
-      { src: 'assets/pocket-goals.svg', caption: 'Savings goals', alt: 'Pocket concept screen with progress toward travel and home savings goals.' },
-    ],
-  },
-  basil: {
-    title: 'Basil',
-    category: '02 / LIFESTYLE - CONCEPT PROJECT',
-    description: 'A food delivery experience designed around discovery, effortless checkout, and clear order status updates.',
-    tags: ['Kotlin', 'MVVM', 'Retrofit', 'Firebase', 'Google Maps'],
-    role: 'Android developer concept: designed the restaurant discovery flow, cart state management, order tracking, and lifecycle-aware real-time subscriptions.',
-    features: ['Restaurant discovery with dietary and cuisine filters', 'Persistent cart and clear checkout summary', 'Real-time order status and delivery tracking', 'Saved favourites and personalized recommendations'],
-    challenge: 'Receiving real-time updates without leaking listeners or wasting battery. The proposed implementation wraps Firebase listeners in callbackFlow, unsubscribes on cancellation, and collects updates only while the screen is active.',
-    screenshots: [
-      { src: 'assets/basil-discover.svg', caption: 'Discover something delicious', alt: 'Basil concept screen with cuisine filters and a featured healthy bowl.' },
-      { src: 'assets/basil-checkout.svg', caption: 'A clear checkout', alt: 'Basil concept screen showing a basket, delivery address, and order total.' },
-      { src: 'assets/basil-tracking.svg', caption: 'Follow your delivery', alt: 'Basil concept screen with an illustrative delivery route and order status.' },
-    ],
-  },
-  daylight: {
-    title: 'Daylight',
-    category: '03 / OPEN SOURCE - CONCEPT PROJECT',
-    description: 'A calm, lightweight task manager that brings a little intention to each day. Designed as an open-source learning project for modern Android practices.',
-    tags: ['Jetpack Compose', 'Hilt', 'Kotlin Flow', 'Room', 'JUnit'],
-    role: 'Independent developer concept: planned the complete product, reusable design system, reactive task storage, and unit testing strategy.',
-    features: ['Daily focus view with completion progress', 'Personal and work task categories', 'Local reminders and recurring tasks', 'Dark theme and screen reader-friendly controls'],
-    challenge: 'Preserving task state across configuration changes and process recreation. The proposed architecture combines persistent Room storage, ViewModel state exposed through StateFlow, and SavedStateHandle for temporary filters.',
-    screenshots: [
-      { src: 'assets/daylight-today.svg', caption: 'Your intentional day', alt: 'Daylight concept screen showing daily tasks and completion progress.' },
-      { src: 'assets/daylight-focus.svg', caption: 'One thing at a time', alt: 'Daylight concept screen with an illustrative focus timer.' },
-      { src: 'assets/daylight-week.svg', caption: 'Celebrate small steps', alt: 'Daylight concept screen showing weekly task completion and a progress chart.' },
-    ],
+// Theme Management System
+class ThemeManager {
+  constructor() {
+    this.STORAGE_KEY = 'portfolio-theme';
+    this.LIGHT_THEME = 'light';
+    this.DARK_THEME = 'dark';
+    this.init();
+  }
+
+  init() {
+    // Check for saved preference first
+    const savedTheme = localStorage.getItem(this.STORAGE_KEY);
+    
+    if (savedTheme) {
+      // Use saved preference
+      this.setTheme(savedTheme);
+    } else {
+      // Auto-detect based on time
+      const theme = this.detectThemeByTime();
+      this.setTheme(theme);
+      localStorage.setItem(this.STORAGE_KEY, theme);
+    }
+
+    this.setupToggle();
+  }
+
+  detectThemeByTime() {
+    const hour = new Date().getHours();
+    // Day mode: 6 AM to 6 PM (6-17), Night mode: 6 PM to 6 AM (18-5)
+    return (hour >= 6 && hour < 18) ? this.LIGHT_THEME : this.DARK_THEME;
+  }
+
+  setTheme(theme) {
+    const htmlElement = document.documentElement;
+    htmlElement.setAttribute('data-theme', theme);
+    
+    // Update toggle button if it exists
+    const toggleBtn = document.getElementById('theme-toggle');
+    if (toggleBtn) {
+      toggleBtn.setAttribute('aria-checked', theme === this.DARK_THEME);
+      toggleBtn.title = theme === this.DARK_THEME ? 'Switch to Light Mode' : 'Switch to Dark Mode';
+      toggleBtn.textContent = theme === this.DARK_THEME ? '☀️' : '🌙';
+    }
+
+    // Store preference
+    localStorage.setItem(this.STORAGE_KEY, theme);
+  }
+
+  toggleTheme() {
+    const current = document.documentElement.getAttribute('data-theme');
+    const newTheme = current === this.LIGHT_THEME ? this.DARK_THEME : this.LIGHT_THEME;
+    this.setTheme(newTheme);
+  }
+
+  setupToggle() {
+    const toggleBtn = document.getElementById('theme-toggle');
+    if (toggleBtn) {
+      toggleBtn.addEventListener('click', () => this.toggleTheme());
+    }
+  }
+}
+
+// Initialize theme when DOM is ready
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', () => {
+    new ThemeManager();
+  });
+} else {
+  new ThemeManager();
+}
+
   },
 };
 
