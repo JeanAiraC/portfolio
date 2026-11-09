@@ -8,9 +8,7 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Light Mode (Default) */
-html[data-theme="light"],
-html {
+:root {
   /* Primary Colors */
   --primary: #0066cc;
   --primary-light: #e0f2fe;
@@ -37,45 +35,11 @@ html {
   --blue: #0066cc;
 }
 
-/* Dark Mode */
-html[data-theme="dark"] {
-  /* Primary Colors */
-  --primary: #60a5fa;
-  --primary-light: #1e3a8a;
-  --primary-hover: #93c5fd;
-  
-  /* Backgrounds */
-  --bg-primary: #0f172a;
-  --bg-secondary: #1e293b;
-  --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e3a5f 100%);
-  
-  /* Text */
-  --text-primary: #f1f5f9;
-  --text-secondary: #cbd5e1;
-  --text-muted: #94a3b8;
-  
-  /* Borders & Lines */
-  --border-color: #334155;
-  --border-soft: #1e293b;
-  
-  /* Accents */
-  --green: #34d399;
-  --orange: #fbbf24;
-  --red: #f87171;
-  --blue: #60a5fa;
-}
-
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
   background: var(--bg-primary);
   color: var(--text-primary);
   line-height: 1.6;
-  transition: background-color 0.5s cubic-bezier(0.4, 0, 0.2, 1),
-              color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-html[data-theme] {
-  transition: color-scheme 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .container {
@@ -126,30 +90,60 @@ html[data-theme] {
   color: var(--primary);
 }
 
-/* Theme Toggle Button */
-.theme-toggle {
-  background: none;
-  border: 2px solid var(--border-color);
-  color: var(--text-primary);
-  width: 40px;
-  height: 40px;
-  border-radius: 8px;
-  font-size: 20px;
-  cursor: pointer;
+/* Tabs Navigation */
+.tabs-nav {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  gap: 10px;
+  margin-bottom: 40px;
+  border-bottom: 2px solid var(--border-color);
 }
 
-.theme-toggle:hover {
-  background: var(--bg-secondary);
-  border-color: var(--primary);
-  transform: scale(1.15);
+.tab-button {
+  padding: 15px 25px;
+  background: none;
+  border: none;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  cursor: pointer;
+  position: relative;
+  transition: color 0.3s ease;
 }
 
-.theme-toggle:active {
-  transform: scale(0.92);
+.tab-button:hover {
+  color: var(--primary);
+}
+
+.tab-button.active {
+  color: var(--primary);
+}
+
+.tab-button.active::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--primary);
+}
+
+.tab-content {
+  display: none;
+  animation: fadeIn 0.3s ease;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 /* Hero Section */
@@ -221,9 +215,6 @@ html[data-theme] {
   transform: translateY(-2px);
   box-shadow: 0 10px 25px rgba(0, 102, 204, 0.2);
 }
-
-html[data-theme="dark"] .btn-primary:hover {
-  box-shadow: 0 10px 25px rgba(96, 165, 250, 0.3);
 }
 
 .btn-secondary {
@@ -248,11 +239,6 @@ html[data-theme="dark"] .btn-primary:hover {
   max-width: 300px;
   height: auto;
   filter: drop-shadow(0 20px 60px rgba(0, 102, 204, 0.15));
-  transition: filter 0.3s ease;
-}
-
-html[data-theme="dark"] .android-phone {
-  filter: drop-shadow(0 20px 60px rgba(96, 165, 250, 0.25));
 }
 
 /* Phone Time Element - Dynamic Color Based on Theme */
@@ -283,17 +269,9 @@ html[data-theme="dark"] .android-phone {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-html[data-theme="dark"] .experience-item {
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-}
-
 .experience-item:hover {
   transform: translateX(5px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-html[data-theme="dark"] .experience-item:hover {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
 }
 
 .experience-header {
@@ -387,10 +365,6 @@ html[data-theme="dark"] .experience-item:hover {
   border-color: var(--primary);
 }
 
-html[data-theme="dark"] .about-card:hover {
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-}
-
 .about-card h4 {
   font-size: 18px;
   font-weight: 600;
@@ -457,10 +431,6 @@ html[data-theme="dark"] .about-card:hover {
   transform: translateY(-3px);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
   border-color: var(--primary);
-}
-
-html[data-theme="dark"] .skill-group:hover {
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 }
 
 .skill-group h4 {
@@ -563,11 +533,6 @@ html[data-theme="dark"] .skill-group:hover {
   box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
 }
 
-html[data-theme="dark"] .contact-form input:focus,
-html[data-theme="dark"] .contact-form textarea:focus {
-  box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.2);
-}
-
 .contact-form button {
   margin-top: 10px;
 }
@@ -579,10 +544,6 @@ html[data-theme="dark"] .contact-form textarea:focus {
   padding: 30px 0;
   text-align: center;
   font-size: 14px;
-  transition: all 0.3s ease;
-}
-
-html[data-theme="dark"] .footer {
   background: #000000;
 }
 

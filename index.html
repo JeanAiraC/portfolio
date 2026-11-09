@@ -16,35 +16,6 @@
   <title>Jean Aira Canillo — Mobile Developer</title>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%230066cc'/%3E%3Cg text-anchor='middle' font-family='Arial,sans-serif' font-weight='700'%3E%3Ctext x='32' y='40' font-size='32' fill='%23ffffff'%3EJC%3C/text%3E%3C/g%3E%3C/svg%3E">
   <link rel="stylesheet" href="styles.css">
-  
-  <!-- Inline script for immediate theme detection to prevent flash -->
-  <script>
-    // Run immediately before DOM renders
-    (function() {
-      try {
-        // Check if user has a saved preference
-        const savedTheme = localStorage.getItem('portfolio-theme');
-        
-        let theme = 'light'; // default
-        
-        if (savedTheme) {
-          theme = savedTheme;
-        } else {
-          // Auto-detect based on current time
-          const hour = new Date().getHours();
-          // Day: 6 AM to 6 PM (6-17), Night: 6 PM to 6 AM (18-5)
-          theme = (hour >= 6 && hour < 18) ? 'light' : 'dark';
-        }
-        
-        // Apply theme immediately
-        document.documentElement.setAttribute('data-theme', theme);
-        console.log('Theme set to:', theme);
-      } catch (e) {
-        console.error('Theme error:', e);
-        document.documentElement.setAttribute('data-theme', 'light');
-      }
-    })();
-  </script>
 </head>
 <body>
   <header class="header">
@@ -52,10 +23,10 @@
       <div class="header-content">
         <h1 class="logo">Jean Aira Canillo</h1>
         <nav class="nav">
-          <a href="#about">About</a>
+          <a href="#experience">Experience</a>
+          <a href="#education">Education</a>
           <a href="#skills">Skills</a>
           <a href="#contact">Contact</a>
-          <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode" title="Toggle Theme">🌙</button>
         </nav>
       </div>
     </div>
@@ -140,96 +111,107 @@
       </div>
     </section>
 
-    <!-- Experience Section -->
-    <section class="experience" id="experience">
+    <!-- Professional Experience & Education Tabs Section -->
+    <section class="tabs-section" id="experience">
       <div class="container">
-        <h3 class="section-title">Professional Experience</h3>
-        <div class="experience-list">
-          <div class="experience-item">
-            <div class="experience-header">
-              <h4>Mid-Level Android Developer</h4>
-              <span class="experience-date">Jan 2024 — Present</span>
-            </div>
-            <p class="experience-company">Serino Systems Inc.</p>
-            <ul class="experience-details">
-              <li>Develop and maintain Android payment applications, following coding standards and best practices</li>
-              <li>Build payment flows using Java and JavaScript, including communication between native Android services and WebView interfaces</li>
-              <li>Support POS/ECR integrations, EMV processing, and host authorization across standalone and integrated payment modes</li>
-              <li>Integrate systems using JSON, TCP/IP, USB/serial communication, and Android AIDL; handle callbacks, timeouts, and errors</li>
-              <li>Apply localization techniques to support multiple languages in the app</li>
-              <li>Manage project dependencies and builds using Gradle</li>
-              <li>Use GitHub Copilot to assist with debugging and feature development, reviewing suggestions before applying them</li>
-            </ul>
-          </div>
+        <!-- Tabs Navigation -->
+        <div class="tabs-nav">
+          <button class="tab-button active" data-tab="experience">
+            📊 Professional Experience
+          </button>
+          <button class="tab-button" data-tab="education">
+            🎓 Education & Credentials
+          </button>
+        </div>
 
-          <div class="experience-item">
-            <div class="experience-header">
-              <h4>Android Developer</h4>
-              <span class="experience-date">Feb 2022 — Aug 2023</span>
+        <!-- Professional Experience Tab -->
+        <div class="tab-content active" id="tab-experience">
+          <h3 class="section-title">Professional Experience</h3>
+          <div class="experience-list">
+            <div class="experience-item">
+              <div class="experience-header">
+                <h4>Mid-Level Android Developer</h4>
+                <span class="experience-date">Jan 2024 — Present</span>
+              </div>
+              <p class="experience-company">Serino Systems Inc.</p>
+              <ul class="experience-details">
+                <li>Develop and maintain Android payment applications, following coding standards and best practices</li>
+                <li>Build payment flows using Java and JavaScript, including communication between native Android services and WebView interfaces</li>
+                <li>Support POS/ECR integrations, EMV processing, and host authorization across standalone and integrated payment modes</li>
+                <li>Integrate systems using JSON, TCP/IP, USB/serial communication, and Android AIDL; handle callbacks, timeouts, and errors</li>
+                <li>Apply localization techniques to support multiple languages in the app</li>
+                <li>Manage project dependencies and builds using Gradle</li>
+                <li>Use GitHub Copilot to assist with debugging and feature development, reviewing suggestions before applying them</li>
+              </ul>
             </div>
-            <p class="experience-company">Collabera® Digital</p>
-            <ul class="experience-details">
-              <li>Developed and maintained features for a digital banking app, including in-app account opening, ID and selfie verification, card controls, savings goals, and expense tracking</li>
-              <li>Supported account integrations, including legacy Citi-branded accounts, and updated the UI/UX design based on client feedback</li>
-              <li>Collaborated with designers and testers to deliver functional, user-friendly app experiences</li>
-              <li>Wrote front-end unit tests to support code coverage requirements</li>
-            </ul>
-          </div>
 
-          <div class="experience-item">
-            <div class="experience-header">
-              <h4>Programmer I / Android Developer</h4>
-              <span class="experience-date">Oct 2017 — Feb 2022</span>
+            <div class="experience-item">
+              <div class="experience-header">
+                <h4>Android Developer</h4>
+                <span class="experience-date">Feb 2022 — Aug 2023</span>
+              </div>
+              <p class="experience-company">Collabera® Digital</p>
+              <ul class="experience-details">
+                <li>Developed and maintained features for a digital banking app, including in-app account opening, ID and selfie verification, card controls, savings goals, and expense tracking</li>
+                <li>Supported account integrations, including legacy Citi-branded accounts, and updated the UI/UX design based on client feedback</li>
+                <li>Collaborated with designers and testers to deliver functional, user-friendly app experiences</li>
+                <li>Wrote front-end unit tests to support code coverage requirements</li>
+              </ul>
             </div>
-            <p class="experience-company">Zynappse Corporation</p>
-            <ul class="experience-details">
-              <li>Built and maintained Android apps with database, Google Maps, authentication, and server integrations</li>
-              <li>Developed membership app features for points and tier tracking, digital vouchers, property information, and live chat support</li>
-              <li>Leveraged Android Jetpack components to streamline app development</li>
-              <li>Created responsive day and night interfaces and contributed to iOS development</li>
-              <li>Delivered and tested app features in collaboration with the wider development team</li>
-            </ul>
+
+            <div class="experience-item">
+              <div class="experience-header">
+                <h4>Programmer I / Android Developer</h4>
+                <span class="experience-date">Oct 2017 — Feb 2022</span>
+              </div>
+              <p class="experience-company">Zynappse Corporation</p>
+              <ul class="experience-details">
+                <li>Built and maintained Android apps with database, Google Maps, authentication, and server integrations</li>
+                <li>Developed membership app features for points and tier tracking, digital vouchers, property information, and live chat support</li>
+                <li>Leveraged Android Jetpack components to streamline app development</li>
+                <li>Created responsive day and night interfaces and contributed to iOS development</li>
+                <li>Delivered and tested app features in collaboration with the wider development team</li>
+              </ul>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
 
-    <!-- About Section -->
-    <section class="about" id="about">
-      <div class="container">
-        <h3 class="section-title">Education & Credentials</h3>
-        <div class="about-grid">
-          <div class="about-card">
-            <h4>Bachelor of Science</h4>
-            <p><strong>Mathematics (Major in Computer Science)</strong></p>
-            <p>Bulacan State University (Main Campus)</p>
-            <p class="text-muted">City of Malolos, Bulacan</p>
-            <p class="text-muted">2013 - 2017</p>
-          </div>
-          <div class="about-card">
-            <h4>Professional Certification</h4>
-            <p><strong>Career Service Examination (Professional)</strong></p>
-            <p>Passed in 2017</p>
-            <p class="text-muted">Civil Service Commission Regional Office III</p>
-            <p class="text-muted">City of San Fernando, Pampanga</p>
-          </div>
-          <div class="about-card">
-            <h4>Core Strengths</h4>
-            <ul class="strengths-list">
-              <li>Cross-platform development expertise</li>
-              <li>Payment and financial systems integration</li>
-              <li>Clean code and architectural patterns</li>
-              <li>Agile team collaboration</li>
-            </ul>
-          </div>
-          <div class="about-card">
-            <h4>Soft Skills</h4>
-            <ul class="strengths-list">
-              <li>Teamwork & Communication</li>
-              <li>Analytical thinking</li>
-              <li>Attention to detail</li>
-              <li>Time management & Flexibility</li>
-            </ul>
+        <!-- Education & Credentials Tab -->
+        <div class="tab-content" id="tab-education">
+          <h3 class="section-title">Education & Credentials</h3>
+          <div class="about-grid">
+            <div class="about-card">
+              <h4>Bachelor of Science</h4>
+              <p><strong>Mathematics (Major in Computer Science)</strong></p>
+              <p>Bulacan State University (Main Campus)</p>
+              <p class="text-muted">City of Malolos, Bulacan</p>
+              <p class="text-muted">2013 - 2017</p>
+            </div>
+            <div class="about-card">
+              <h4>Professional Certification</h4>
+              <p><strong>Career Service Examination (Professional)</strong></p>
+              <p>Passed in 2017</p>
+              <p class="text-muted">Civil Service Commission Regional Office III</p>
+              <p class="text-muted">City of San Fernando, Pampanga</p>
+            </div>
+            <div class="about-card">
+              <h4>Core Strengths</h4>
+              <ul class="strengths-list">
+                <li>Cross-platform development expertise</li>
+                <li>Payment and financial systems integration</li>
+                <li>Clean code and architectural patterns</li>
+                <li>Agile team collaboration</li>
+              </ul>
+            </div>
+            <div class="about-card">
+              <h4>Soft Skills</h4>
+              <ul class="strengths-list">
+                <li>Teamwork & Communication</li>
+                <li>Analytical thinking</li>
+                <li>Attention to detail</li>
+                <li>Time management & Flexibility</li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
@@ -318,6 +300,27 @@
     </div>
   </footer>
   
-  <script defer src="script.js"></script>
+  <script>
+    // Tab switching functionality
+    document.querySelectorAll('.tab-button').forEach(button => {
+      button.addEventListener('click', function() {
+        const tabName = this.getAttribute('data-tab');
+        
+        // Hide all tabs
+        document.querySelectorAll('.tab-content').forEach(tab => {
+          tab.classList.remove('active');
+        });
+        
+        // Remove active class from all buttons
+        document.querySelectorAll('.tab-button').forEach(btn => {
+          btn.classList.remove('active');
+        });
+        
+        // Show selected tab and mark button as active
+        document.getElementById(`tab-${tabName}`).classList.add('active');
+        this.classList.add('active');
+      });
+    });
+  </script>
 </body>
 </html>
