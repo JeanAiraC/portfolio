@@ -180,6 +180,52 @@ body {
 }
 
 .about-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+}
+
+.about-card h4 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #0066cc;
+  margin-bottom: 12px;
+  margin-top: 0;
+}
+
+.about-card p {
+  font-size: 14px;
+  color: #666666;
+  margin: 8px 0;
+  line-height: 1.6;
+}
+
+.about-card .text-muted {
+  color: #999999;
+  font-size: 13px;
+}
+
+.strengths-list {
+  list-style: none;
+  padding: 0;
+  margin: 12px 0 0 0;
+}
+
+.strengths-list li {
+  color: #666666;
+  font-size: 14px;
+  padding: 6px 0 6px 18px;
+  position: relative;
+}
+
+.strengths-list li:before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: #10b981;
+  font-weight: bold;
+}
+
+.about-card:hover {
   border-color: #0066cc;
   box-shadow: 0 10px 30px rgba(0, 102, 204, 0.1);
 }
@@ -237,6 +283,86 @@ body {
 
 .skill-group li:before {
   content: "→";
+  position: absolute;
+  left: 0;
+  color: #0066cc;
+  font-weight: bold;
+}
+
+/* Experience Section */
+.experience {
+  padding: 80px 0;
+  background: #f9fafb;
+}
+
+.experience-list {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.experience-item {
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 12px;
+  border-left: 4px solid #0066cc;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.experience-item:hover {
+  transform: translateX(5px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.experience-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.experience-header h4 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin: 0;
+}
+
+.experience-date {
+  background: #e0f2fe;
+  color: #0066cc;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.experience-company {
+  color: #0066cc;
+  font-weight: 600;
+  font-size: 15px;
+  margin: 0 0 15px 0;
+}
+
+.experience-details {
+  list-style: none;
+  margin: 15px 0 0 0;
+  padding: 0;
+}
+
+.experience-details li {
+  color: #666666;
+  font-size: 14px;
+  line-height: 1.7;
+  padding: 8px 0 8px 20px;
+  position: relative;
+}
+
+.experience-details li:before {
+  content: "▸";
   position: absolute;
   left: 0;
   color: #0066cc;
