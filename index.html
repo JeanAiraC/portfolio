@@ -78,7 +78,18 @@
             </div>
           </div>
           <div class="hero-visual">
-            <svg class="android-phone-profile" viewBox="0 0 280 560" xmlns="http://www.w3.org/2000/svg">
+            <svg class="android-phone-profile" viewBox="0 0 280 560" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <!-- Define circular mask for profile picture -->
+              <defs>
+                <mask id="circleMask">
+                  <rect width="280" height="560" fill="white"/>
+                  <circle cx="140" cy="160" r="30" fill="black"/>
+                </mask>
+                <clipPath id="circleClip">
+                  <circle cx="140" cy="160" r="30"/>
+                </clipPath>
+              </defs>
+              
               <!-- Phone frame -->
               <rect x="20" y="20" width="240" height="520" rx="20" fill="#1a1a1a" stroke="#000" stroke-width="2"/>
               
@@ -102,11 +113,13 @@
               <!-- Space above picture -->
               <rect x="30" y="104" width="220" height="20" fill="none"/>
               
-              <!-- Profile Picture Circle -->
+              <!-- Profile Picture Circle Background -->
               <circle cx="140" cy="160" r="30" fill="#10b981" stroke="#0066cc" stroke-width="2"/>
               
-              <!-- Profile Image - Replace src with your photo path -->
-              <image x="110" y="130" width="60" height="60" href="profile-photo.jpg" preserveAspectRatio="xMidYMid slice" clip-path="circle(30px at 140px 160px)"/>
+              <!-- Profile Image with clip path -->
+              <g clip-path="url(#circleClip)">
+                <image x="110" y="130" width="60" height="60" xlink:href="profile-photo.jpg" preserveAspectRatio="xMidYMid slice"/>
+              </g>
               
               <!-- Profile Name -->
               <text x="140" y="215" font-size="14" font-weight="bold" fill="#1a1a1a" text-anchor="middle">Jean Aira</text>
