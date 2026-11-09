@@ -489,6 +489,21 @@ html[data-theme="dark"] .skill-group:hover {
   font-weight: bold;
 }
 
+.skill-group li.highlighted {
+  background: var(--primary-light);
+  color: var(--primary);
+  font-weight: 600;
+  padding: 8px 10px;
+  padding-left: 15px;
+  border-radius: 6px;
+  margin-bottom: 4px;
+}
+
+html[data-theme="dark"] .skill-group li.highlighted {
+  background: rgba(96, 165, 250, 0.15);
+  color: #93c5fd;
+}
+
 /* Contact Section */
 .contact {
   padding: 80px 0;
