@@ -78,19 +78,33 @@ class ThemeManager {
   }
 
   updatePhoneDisplay() {
-    // Update phone time
+    // Update phone time from internet
     const timeElement = document.getElementById('phone-time');
     if (timeElement) {
-      const now = new Date();
-      const hours = String(now.getHours()).padStart(2, '0');
-      const minutes = String(now.getMinutes()).padStart(2, '0');
-      timeElement.textContent = `${hours}:${minutes}`;
+      this.fetchInternetTime().then(now => {
+        const hours = String(now.getHours()).padStart(2, '0');
+        const minutes = String(now.getMinutes()).padStart(2, '0');
+        timeElement.textContent = `${hours}:${minutes}`;
+      }).catch(error => {
+        console.warn('Failed to fetch internet time:', error);
+        // Fallback to local time
+        const now = new Date();
+        const hours = String(now.getHours()).padStart(2, '0');
+        const minutes = String(now.getMinutes()).padStart(2, '0');
+        timeElement.textContent = `${hours}:${minutes}`;
+      });
     }
+  }
+
+  async fetchInternetTime() {
+    const response = await fetch('https://worldtimeapi.org/api/timezone/Asia/Manila');
+    const data = await response.json();
+    return new Date(data.datetime);
   }
 }
 
 // ============================================
-// TIME UPDATER - Updates phone time every minute
+// TIME UPDATER - Updates phone time from internet
 // ============================================
 class TimeUpdater {
   constructor() {
@@ -103,14 +117,28 @@ class TimeUpdater {
     setInterval(() => this.updateTime(), 60000);
   }
 
-  updateTime() {
+  async fetchInternetTime() {
+    try {
+      // Using worldtimeapi.org which provides free internet time
+      // Using timezone for Philippines (where the user is located)
+      const response = await fetch('https://worldtimeapi.org/api/timezone/Asia/Manila');
+      const data = await response.json();
+      return new Date(data.datetime);
+    } catch (error) {
+      console.warn('Failed to fetch internet time:', error);
+      // Fallback to local time if API fails
+      return new Date();
+    }
+  }
+
+  async updateTime() {
     const timeElement = document.getElementById('phone-time');
     if (timeElement) {
-      const now = new Date();
+      const now = await this.fetchInternetTime();
       const hours = String(now.getHours()).padStart(2, '0');
       const minutes = String(now.getMinutes()).padStart(2, '0');
       timeElement.textContent = `${hours}:${minutes}`;
-      console.log('Phone time updated to:', `${hours}:${minutes}`);
+      console.log('Phone time updated to:', `${hours}:${minutes}`, '(from internet)');
     }
   }
 }
